@@ -14,11 +14,12 @@ class MyGui:
         #menu
         self.menubar = tk.Menu(self.root)
 
-        self.filemenu1 = tk.Menu(self.menubar)
+        self.filemenu1 = tk.Menu(self.menubar, tearoff=0)
         self.filemenu1.add_command(label='Close', command=self.zamknij)
+        self.filemenu1.add_separator()
         self.filemenu1.add_command(label='Clear', command=self.clear)
 
-        self.filemenu2 = tk.Menu(self.menubar)
+        self.filemenu2 = tk.Menu(self.menubar, tearoff=0)
         self.filemenu2.add_command(label='wiadomosc', command=self.show_message)
         self.filemenu2.add_command(label='wyjscie', command=exit)
 
