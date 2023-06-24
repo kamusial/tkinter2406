@@ -6,8 +6,9 @@ root.geometry('600x400+100+50')  #wielkość ona i położenie
 #root.resizable(True, False)   #zmiana wielkości okna
 root.minsize(200, 200)
 root.maxsize(800, 600)
-root.attributes('-alpha', 0.5)
+root.attributes('-alpha', 0.9)
 root.attributes('-topmost', 1)
+root.iconbitmap('merito.ico')
 
 
 message1 = tk.Label(root, text='Pierwszy napis')
