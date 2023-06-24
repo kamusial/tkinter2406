@@ -23,6 +23,8 @@ class MyGui:
 
         self.textbox = tk.Text(self.root, height=5, font=('Arial', 15))
 
+        self.textbox.bind("<KeyPress>", self.keypress)
+
         self.textbox.pack(padx=10, pady=10)
 
         self.check_state = tk.IntVar()
@@ -31,6 +33,12 @@ class MyGui:
 
         self.button = tk.Button(self.root, text='Show Message', font=('Arial', 16), command=self.show_message)
         self.button.pack(padx=10, pady=10)
+
+        self.clear_button = tk.Button(self.root, text='Clear', font=('Arial', 16), command=self.clear)
+        self.clear_button.pack(padx=10, pady=10)
+
+
+        self.root.protocol('WM_DELETE_WINDOW', self.zamknij)
         self.root.mainloop()
 
     def show_message(self):
@@ -40,5 +48,22 @@ class MyGui:
             print(self.textbox.get('1.0', tk.END))   #od początku do końca
         else:
             messagebox.showinfo(title='Wiadomosc', message=self.textbox.get('1.0', tk.END))
+
+    def keypress(self, event):
+        # print('\n',event)
+        # print(event.keysym)
+        # print(event.state)
+        if event.keysym == 'Return' and event.state == 12:
+            print('Nacisnieto ctrl+enter - tak jak prycisk')
+            self.show_message()
+
+    def zamknij(self):
+        print('Zamknij')
+        if messagebox.askyesno(title='Potwierdzenie', message='Czy napewno chces zamaknac?'):
+            self.root.destroy()
+
+    def clear(self):
+        self.textbox.delete('1.0', tk.END)
+        messagebox.showinfo(title='', message='wyczyszczono dane')
 
 MyGui()
